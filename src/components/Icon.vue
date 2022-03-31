@@ -1,18 +1,18 @@
 <template>
   <x-tooltip v-if="tooltipContent" :title="tooltipContent" :overlayClassName="tooltipClassName">
     <svg :image="image" class="icon" :class="iconExtraClass" :style="iconExtraStyle">
-      <use :xlink:href="`#${namespace}${namespace ? '/': ''}${name}`"></use>
+      <use :xlink:href="`#${MODULE_NAME}/${namespace}${namespace ? '/': ''}${name}`"></use>
     </svg>
   </x-tooltip>
   <svg v-else :image="image" class="icon" :class="iconExtraClass" :style="iconExtraStyle">
-    <use :xlink:href="`#${namespace}${namespace ? '/': ''}${name}`"></use>
+    <use :xlink:href="`#${MODULE_NAME}/${namespace}${namespace ? '/': ''}${name}`"></use>
   </svg>
 </template>
 
 <script lang="ts">
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable  @typescript-eslint/explicit-module-boundary-types */
-import { PropType, reactive, toRefs, watch } from 'vue'
+import { inject, PropType, reactive, toRefs, watch } from 'vue'
 import XTooltip from '@/smart-ui-vue/XTooltip.vue'
 
 export type ColorType = 'primary' | 'warn' | 'danger' | string
@@ -96,6 +96,7 @@ export default {
     // 设置图标默认颜色 end
     return {
       ...toRefs(colorRefs),
+      MODULE_NAME: inject('$moduleName')
     }
   },
 }

@@ -51,7 +51,7 @@ module.exports = {
       .options({
         symbolId: filePath => {
           const newPath = filePath.split(path.sep).join('/')
-          const svgname = newPath.substring(newPath.indexOf('icons/')).replace('icons/', '').replace('.svg', '')
+          const svgname = newPath.substring(newPath.indexOf('icons/')).replace('icons/', 'lava-fe-example/').replace('.svg', '')
           return svgname
         },
       })

@@ -5,13 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, provide } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 export default defineComponent({
   name: 'App',
   components: {},
   setup() {
+    provide('$moduleName', 'lava-fe-example')
     return {
       zhCN
     }
