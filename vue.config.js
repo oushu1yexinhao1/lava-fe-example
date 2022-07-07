@@ -3,6 +3,7 @@ const { name } = require('./package')
 const path = require('path')
 const SERVER_PORT = 3999
 const modifyVars = require('./src/smart-ui-vue/modifyVars.ts')
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 module.exports = {
   devServer: {
     headers: {
@@ -32,6 +33,9 @@ module.exports = {
       libraryTarget: 'umd', // 把微应用打包成 umd 库格式
       jsonpFunction: `webpackJsonp_${name}`,
     },
+    plugins: [
+      new AntdDayjsWebpackPlugin({ preset: 'antdv3' })
+    ]
   },
   chainWebpack: config => {
     config.module

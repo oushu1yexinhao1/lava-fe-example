@@ -76,6 +76,7 @@
         "code": 150
       }
     ],
+    "no-magic-numbers": "off",
     "no-trailing-spaces": "error",
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
@@ -110,19 +111,6 @@
     "prefer-const": "error",
     "prefer-rest-params": "error",
     "no-console": "warn",
-    "no-magic-numbers": [
-      "warn",
-      {
-        "ignore": [
-          0,
-          1,
-          -1
-        ],
-        "ignoreArrayIndexes": true,
-        "enforceConst": true,
-        "detectObjects": true
-      }
-    ],
     "camelcase": [
       "error",
       {
@@ -148,11 +136,13 @@
         "no-shadow": ["off"],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-magic-numbers": ["warn", { "ignore": [0, 1, -1], "ignoreEnums": true }],
         "@typescript-eslint/camelcase": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {
             "selector": "default",
+            "leadingUnderscore": "allow",
             "format": ["camelCase", "PascalCase", "UPPER_CASE"]
           },
           {
