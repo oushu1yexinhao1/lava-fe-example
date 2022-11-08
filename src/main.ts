@@ -1,16 +1,10 @@
+// 微前端框架需要的public path
 import './public-path'
 import { createApp } from 'vue'
 import App from './App.vue'
-// @ts-ignore
-import store from './store/index.js'
-import 'normalize.css'
-import 'csshake'
-import {
-  Menu, Dropdown, Button, ConfigProvider,
-  Input, Tabs, Form, Card, Modal, Checkbox, Steps,
-  Avatar, Table, Drawer, Space, Select, DatePicker, TimePicker, Tag,
-  Pagination, Tooltip, Spin
-} from 'ant-design-vue'
+import store from './store/index'
+import { Spin, ConfigProvider } from 'ant-design-vue'
+import { ConfigProvider as ConfigProviderV3, } from 'ant-design-vue-3'
 import router from './routes'
 import SvgIcon from './components/Icon.vue'
 import DefaultSpin from './smart-ui-vue/helper/DefaultSpin.vue'
@@ -18,7 +12,13 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import i18n from 'lava-fe-lib/lib-vue-plugin/i18n'
 
-// 设置日期
+interface GlobalProps {
+  container: any,
+  onGlobalStateChange: (state?: any, prev?: any) => void,
+  setGlobalState: (state?: any) => void
+}
+
+// 设置dayjs
 dayjs.locale('zh-cn')
 
 // 设置默认loading
@@ -26,38 +26,38 @@ Spin.setDefaultIndicator({
   indicator: DefaultSpin
 })
 
-let instance:any = null
+// 配置antd-vue-3的configprovider
+// 2的在App.vue上配置
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const modifyVars = require('/src/smart-ui-vue/modifyVars')
+ConfigProvider.config({
+  prefixCls: modifyVars['@ant-prefix'],
+})
 
-function render(props = {}) {
-  // @ts-ignore
-  const { container } = props
+let instance: any = null
+function render(props: GlobalProps = { container: null, onGlobalStateChange: () => 0, setGlobalState: () => 0 }) {
+  // vuex store 添加全局监听器
+  /**
+   * 使用方法
+   * 取值：
+   * state.global.data.xxx
+   * 赋值：
+   * commit('setGlobalState', { foo: xxx })
+   * 示例：
+   * const { state, commit } = useStore()
+   * const foo = computed(() => state.global.data?.foo)
+   * const addFoo = () => {
+   *       console.log(11111, state)
+   *       commit('setGlobalState', { foo: Math.random() })
+   *     }
+   */
+  const { container, onGlobalStateChange } = props
+  store.commit('global/initGlobalProps', props)
+
   instance = createApp(App)
-  instance.use(Drawer)
-  instance.use(Avatar)
   instance.use(router)
-  instance.use(DatePicker)
-  instance.use(Pagination)
-  instance.use(TimePicker)
-  instance.use(Menu)
-  instance.use(Space)
-  instance.use(Select)
-  instance.use(Drawer)
-  instance.use(Table)
-  instance.use(Dropdown)
-  instance.use(Button)
   instance.use(ConfigProvider)
-  instance.use(Input)
-  instance.use(Tabs)
-  instance.use(Form)
-  instance.use(Card)
-  instance.use(Checkbox)
-  instance.use(Modal)
-  instance.use(Steps)
-  instance.use(Spin)
   instance.use(store)
-  instance.use(Tag)
-  instance.use(Table)
-  instance.use(Tooltip)
 
   // 统一注册svg-icon组件
   instance.component('svg-icon', SvgIcon)

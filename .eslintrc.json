@@ -77,7 +77,7 @@
       }
     ],
     "no-magic-numbers": "off",
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
     "object-curly-spacing": [
@@ -117,7 +117,8 @@
         "properties": "never",
         "ignoreDestructuring": true
       }
-    ]
+    ],
+    "vue/custom-event-name-casing": "off"
   },
   "overrides": [
     {
@@ -164,6 +165,15 @@
           {
             "selector": "property",
             "format": ["camelCase", "snake_case", "PascalCase"]
+          },
+          {
+            "selector": "property",
+            "format": null,
+            "filter": {
+              "regex": "^(@*)([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+              "match": true
+            },
+            "modifiers": ["requiresQuotes"]
           }
         ]
       }
