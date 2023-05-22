@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <style>
-  #app {
-    width: 100%;
-    height: 100%;
-    padding-top: 60px;
-  }
-
   body .ant-tooltip-inner .sidebar-item {
     float: left;
     margin: -1px -5px 0 0;
@@ -26,13 +17,13 @@
     float: left;
     margin: 5px 0 0 0;
   }
-  body .ant-menu-submenu .sidebar-item{
+  body .ant-menu-submenu .sidebar-item {
     float: left;
     margin: 5px 0 0 0;
   }
 </style>
 <style>
-  @keyframes ldio-4oij86wskfe {
+  @keyframes global-loading-ring {
     0% {
       transform: rotate(0)
     }
@@ -41,46 +32,72 @@
     }
   }
 
-  .ldio-4oij86wskfe div {
+  #example-global-loading-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(234, 234, 234, 0.8);
+    transform: translate(0, 0);
+  }
+
+  #example-global-loading {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    overflow: hidden;
+    background: transparent;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+  }
+
+  #example-global-loading .global-loading-ring div {
     box-sizing: border-box !important
   }
 
-  .ldio-4oij86wskfe > div {
+  #example-global-loading .global-loading-ring > div {
     position: absolute;
     width: 74px;
     height: 74px;
     top: 13px;
     left: 13px;
     border-radius: 50%;
-    border: 10px solid #000;
+    border-width: 10px;
+    border-style: solid;
     border-color: #336cff transparent #336cff transparent;
-    animation: ldio-4oij86wskfe 1.2s linear infinite;
+    animation: global-loading-ring 1.2s linear infinite;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(2), .ldio-4oij86wskfe > div:nth-child(4) {
+  #example-global-loading .global-loading-ring > div:nth-child(2),
+  #example-global-loading .global-loading-ring > div:nth-child(4) {
     width: 52px;
     height: 52px;
     top: 24px;
     left: 24px;
-    animation: ldio-4oij86wskfe 1s linear infinite reverse;
+    animation: global-loading-ring 1s linear infinite reverse;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(2) {
+  #example-global-loading .global-loading-ring > div:nth-child(2) {
     border-color: transparent #f5991b transparent #f5991b
   }
 
-  .ldio-4oij86wskfe > div:nth-child(3) {
+  #example-global-loading .global-loading-ring > div:nth-child(3) {
     border-color: transparent
   }
 
-  .ldio-4oij86wskfe > div:nth-child(3) div {
+  #example-global-loading .global-loading-ring > div:nth-child(3) div {
     position: absolute;
     width: 100%;
     height: 100%;
     transform: rotate(45deg);
   }
 
-  .ldio-4oij86wskfe > div:nth-child(3) div:before, .ldio-4oij86wskfe > div:nth-child(3) div:after {
+  #example-global-loading .global-loading-ring > div:nth-child(3) div:before,
+  #example-global-loading .global-loading-ring > div:nth-child(3) div:after {
     content: "";
     display: block;
     position: absolute;
@@ -93,24 +110,25 @@
     box-shadow: 0 64px 0 0 #336cff;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(3) div:after {
+  #example-global-loading .global-loading-ring > div:nth-child(3) div:after {
     left: -10px;
     top: 22px;
     box-shadow: 64px 0 0 0 #336cff;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(4) {
+  #example-global-loading .global-loading-ring > div:nth-child(4) {
     border-color: transparent;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(4) div {
+  #example-global-loading .global-loading-ring > div:nth-child(4) div {
     position: absolute;
     width: 100%;
     height: 100%;
     transform: rotate(45deg);
   }
 
-  .ldio-4oij86wskfe > div:nth-child(4) div:before, .ldio-4oij86wskfe > div:nth-child(4) div:after {
+  #example-global-loading .global-loading-ring > div:nth-child(4) div:before,
+  #example-global-loading .global-loading-ring > div:nth-child(4) div:after {
     content: "";
     display: block;
     position: absolute;
@@ -123,57 +141,48 @@
     box-shadow: 0 42px 0 0 #f5991b;
   }
 
-  .ldio-4oij86wskfe > div:nth-child(4) div:after {
+  #example-global-loading .global-loading-ring > div:nth-child(4) div:after {
     left: -10px;
     top: 11px;
     box-shadow: 42px 0 0 0 #f5991b;
   }
 
-  .loadingio-spinner-double-ring-common {
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    overflow: hidden;
-    background: transparent;
-      position: fixed;
-      top: 50vh;
-      left: 50vw;
-      transform: translate(-50%, -50%);
-  }
-
-  .ldio-4oij86wskfe {
+  #example-global-loading .global-loading-ring {
     width: 100%;
     height: 100%;
     position: relative;
     transform: translateZ(0) scale(0.6);
     backface-visibility: hidden;
-    transform-origin: 0 0; /* see note above */
+    transform-origin: 0 0;
   }
 
-  .ldio-4oij86wskfe div {
+  #example-global-loading .global-loading-ring div {
     box-sizing: content-box;
   }
 </style>
 
 <body>
   <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
   </noscript>
 
-  <div id="app">
-      <div class="loadingio-spinner-double-ring-common">
-          <div class="ldio-4oij86wskfe">
-              <div></div>
-              <div></div>
-              <div>
-                  <div></div>
-              </div>
-              <div>
-                  <div></div>
-              </div>
-          </div>
+  <div id="<%= VUE_APP_NAME %>-app"></div>
+  <!-- 全局 loading -->
+  <!-- xxx-container 用于被 App.vue 获取 -->
+  <div id="<%= VUE_APP_NAME %>-global-loading-container">
+    <!-- xxx 用于设置样式 -->
+    <div id="<%= VUE_APP_NAME %>-global-loading">
+      <div class="global-loading-ring">
+        <div></div>
+        <div></div>
+        <div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
       </div>
+    </div>
   </div>
   <!-- built files will be auto injected -->
 </body>

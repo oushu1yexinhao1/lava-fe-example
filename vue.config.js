@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { name } = require('./package')
 const path = require('path')
-const SERVER_PORT = 3999
-const modifyVars = require('./src/smart-ui-vue/modifyVars.ts')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+const modifyVars = require('./src/smart-ui-vue/modifyVars.ts')
+const { name } = require('./package.json')
+
+const SERVER_PORT = 3013
+
 module.exports = {
   devServer: {
     headers: {
@@ -55,8 +57,7 @@ module.exports = {
       .options({
         symbolId: filePath => {
           const newPath = filePath.split(path.sep).join('/')
-          const svgname = newPath.substring(newPath.indexOf('icons/')).replace('icons/', 'lava-fe-example/').replace('.svg', '')
-          return svgname
+          return newPath.substring(newPath.indexOf('icons/')).replace('icons/', `${name}/`).replace('.svg', '')
         },
       })
 

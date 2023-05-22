@@ -9,7 +9,6 @@ const routes: RouteRecordRaw[] = [
   return { ...item, path: `${PREFIX}${item.path}` }
 })
 
-
 const router = createRouter({
   history: createWebHistory(''),
   routes,

@@ -20,17 +20,18 @@ export default defineComponent({
     LavaDevTools
   },
   setup() {
-    provide('$moduleName', 'lava-fe-example')
+    const APP_NAME = process.env.VUE_APP_NAME
+    provide('$moduleName', `lava-fe-${APP_NAME}`)
 
     const router = useRouter()
-    // 加载中loading状态
+    // 切换路由时的 loading 效果
     router.beforeEach((to, from) => {
-      const ele = document.getElementById('example-loadingio-spinner-double-ring-common-container')
+      const ele = document.getElementById(`${APP_NAME}-global-loading-container`)
       if (ele)
         ele.style.display = 'inline-block'
     })
     router.afterEach((to, from) => {
-      const ele = document.getElementById('example-loadingio-spinner-double-ring-common-container')
+      const ele = document.getElementById(`${APP_NAME}-global-loading-container`)
       if (ele) {
         ele.style.position = 'absolute'
         ele.style.display = 'none'

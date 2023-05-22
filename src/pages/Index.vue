@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <h1>Hello, {{ appName }}!</h1>
 </template>
 
 <script lang="ts">
@@ -11,7 +11,9 @@ export default defineComponent({
   props: {},
   emits: [],
   setup() {
-    return {}
+    return {
+      appName: process.env.VUE_APP_NAME
+    }
   }
 })
 </script>
