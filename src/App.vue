@@ -25,12 +25,12 @@ export default defineComponent({
 
     const router = useRouter()
     // 切换路由时的 loading 效果
-    router.beforeEach((to, from) => {
+    router.beforeEach(() => {
       const ele = document.getElementById(`${APP_NAME}-global-loading-container`)
       if (ele)
         ele.style.display = 'inline-block'
     })
-    router.afterEach((to, from) => {
+    router.afterEach(() => {
       const ele = document.getElementById(`${APP_NAME}-global-loading-container`)
       if (ele) {
         ele.style.position = 'absolute'
@@ -41,7 +41,7 @@ export default defineComponent({
       zhCN,
       modifyVars,
     }
-  }
+  },
 })
 
 </script>

@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './routes'
 import store from './store/index'
-import { Spin, ConfigProvider, message } from 'ant-design-vue-3'
+import { ConfigProvider, message, Spin } from 'ant-design-vue-3'
 
 import SvgIcon from './components/Icon.vue'
 import DefaultSpin from './smart-ui-vue/helper/DefaultSpin.vue'
@@ -65,7 +65,7 @@ function render(props: GlobalProps = { container: null, onGlobalStateChange: () 
    *       commit('setGlobalState', { foo: Math.random() })
    *     }
    */
-  const { container, onGlobalStateChange } = props
+  const { container } = props
   store.commit('global/initGlobalProps', props)
 
   instance = createApp(App)

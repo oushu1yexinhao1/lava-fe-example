@@ -19,6 +19,7 @@
     "__webpack_public_path__": true
   },
   "rules": {
+    "no-loss-of-precision": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "array-callback-return": "error",
@@ -118,7 +119,8 @@
         "ignoreDestructuring": true
       }
     ],
-    "vue/custom-event-name-casing": "off"
+    "vue/custom-event-name-casing": "off",
+    "vue/multi-word-component-names": "warn"
   },
   "overrides": [
     {
