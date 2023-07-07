@@ -14,7 +14,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "latest",
     "ant-design-vue": "^2.2.2",
-    "ant-design-vue-3": "npm:ant-design-vue@^3.1.1",
+    "ant-design-vue-3": "npm:ant-design-vue@^3.2.7",
     "antd-dayjs-webpack-plugin": "^1.0.6",
     "core-js": "^3.6.5",
     "csshake": "^1.5.3",
