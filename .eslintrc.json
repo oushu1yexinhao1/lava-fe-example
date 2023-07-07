@@ -120,7 +120,8 @@
       }
     ],
     "vue/custom-event-name-casing": "off",
-    "vue/multi-word-component-names": "warn"
+    "vue/multi-word-component-names": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "overrides": [
     {
